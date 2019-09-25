@@ -2,7 +2,7 @@
 //  SecondViewController.swift
 //  Test
 //
-//  Created by erumaru on 9/19/19.
+//  Created by erumaru on 9/25/19.
 //  Copyright © 2019 KBTU. All rights reserved.
 //
 
@@ -10,13 +10,15 @@ import UIKit
 
 class SecondViewController: UIViewController {
 
-    @IBOutlet weak var titleLabel: UILabel!
-    
-    var titleText: String = ""
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        titleLabel.text = titleText
+        
+    }
+    
+    @IBAction func back(_ sender: Any) {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let vc = storyboard.instantiateViewController(withIdentifier: "first")
+        
+        UIApplication.shared.keyWindow?.rootViewController = vc
     }
 }
