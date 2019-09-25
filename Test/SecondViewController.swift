@@ -7,16 +7,28 @@
 //
 
 import UIKit
+import Alamofire
 
 class SecondViewController: UIViewController {
-
+    // MARK: - Outlets
     @IBOutlet weak var titleLabel: UILabel!
     
-    var titleText: String = ""
+    // MARK: - Variables
+    var category: String = ""
     
+    // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        titleLabel.text = titleText
+        downloadJoke()
+    }
+    
+    // MARK: - Methods
+    func downloadJoke() {
+        Joke.downloadJoke(for: category) { [weak self] joke in
+            guard let self = self else { return }
+            
+            self.titleLabel.text = joke.value
+        }
     }
 }

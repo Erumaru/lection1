@@ -6,6 +6,7 @@ target 'Test' do
   use_frameworks!
 
   pod 'Alamofire'
+  pod 'Cache'
 
   # Pods for Test
 
