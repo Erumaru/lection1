@@ -9,6 +9,80 @@
 import UIKit
 import Alamofire
 
+// ЧТО ТАКОЕ TABLE VIEW DELEGATE!!
+class TableView: UIView {
+    var delegate: TableViewDelegate?
+    var dataSource: TableViewDataSource?
+
+    func selectRow(indexPath: IndexPath) {
+        delegate?.didSelectRow(indexPath: indexPath)
+    }
+    
+    func reloadData() {
+        let count = dataSource?.numberOfRow()
+    }
+    
+    func showRowAt(indexPath: IndexPath) {
+        let row = dataSource?.cellForRow(at: indexPath)
+    }
+}
+
+protocol TableViewDataSource {
+    func numberOfRow() -> Int
+    func cellForRow(at indexPath: IndexPath) -> UITableViewCell
+}
+
+protocol TableViewDelegate: UIViewController {
+    func didSelectRow(indexPath: IndexPath)
+}
+
+class ViewController: UIViewController, TableViewDelegate {
+    var tableView = TableView()
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+        tableView.delegate = self
+    }
+
+    func didSelectRow(indexPath: IndexPath) {
+
+    }
+}
+
+// ЭТО ПРОТОКОЛЫ
+//protocol Moveable {
+//    func move()
+//}
+//
+//class Dog: Moveable {
+//    func move() {
+//
+//    }
+//}
+//
+//class Human: Moveable {
+//    func move() {
+//
+//    }
+//}
+//
+//class ViewController: UIViewController {
+//    var moveables: [(Int, Moveable)] = [(0, Human()), (1, Dog())]
+//
+//    override func viewDidLoad() {
+//        super.viewDidLoad()
+//
+//        for i in 0..<10 {
+//
+//        }
+//
+//        moveables.forEach { first in
+//
+//        }
+//    }
+//}
+
 class FirstViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     @IBOutlet weak var tableView: UITableView!
     
